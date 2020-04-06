@@ -3,6 +3,7 @@ package Coffee;
 import java.net.URLClassLoader;
 
 public class AbstractCoffee {
+
     public void setChosenCoffeeType(CoffeeIF.CoffeeType type) { //throws ClassNot(???)
         String compiledClassLocation = new File(".").getCanonicalPath();
         System.out.println(compiledClassLocation);

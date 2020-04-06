@@ -1,5 +1,5 @@
 package Coffee;
 
 public interface CoffeeIF {
-    CoffeeType
+    public getCoffeeType();
 }
