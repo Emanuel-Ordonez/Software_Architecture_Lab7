@@ -1,5 +1,5 @@
 package Coffee;
 
 public interface CoffeeIF {
-    public getCoffeeType();
+    //public setEnvironment(Coffee.CoffeeOS_API environment); //??
 }
