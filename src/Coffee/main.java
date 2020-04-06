@@ -1,4 +1,4 @@
-package Condiment;
+package Coffee;
 
 public class main {
 

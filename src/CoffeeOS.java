@@ -1,4 +1,4 @@
-package Condiment;
+import Coffee.CoffeeIF;
 
 public class CoffeeOS {
 }
