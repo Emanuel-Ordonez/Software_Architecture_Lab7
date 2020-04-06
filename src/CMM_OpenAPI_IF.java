@@ -1,4 +1,4 @@
-public class CMM {
+public class CMM_OpenAPI_IF {
     public void setCoffeeType(String str){
 
     }
@@ -24,6 +24,18 @@ public class CMM {
     }
 
     public void setPowerLED(int num){
+
+    }
+
+    public void setTypeLED(int num){
+
+    }
+
+    public void computePrice(CoffeeIF cif){
+
+    }
+
+    public void done(){
 
     }
 }
