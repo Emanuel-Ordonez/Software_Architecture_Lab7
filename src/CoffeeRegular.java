@@ -1,8 +1,8 @@
-public class Regular {
+public class CoffeeRegular {
 
     public void start()
     {
-        //Indicate the machine is rinnug
+        //Indicate the machine is running
         //display purchases type of coffee to LED
         //Grind coffee beans for 8 seconds
         //Heat up water to 150 degrees Fahrenheit

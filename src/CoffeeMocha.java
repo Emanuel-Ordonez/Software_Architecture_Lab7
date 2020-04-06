@@ -1,8 +1,8 @@
-public class Mocha {
+public class CoffeeMocha {
 
     public void start()
     {
-        //Indicate the machine is rinnug
+        //Indicate the machine is running
         //display purchases type of coffee to LED
         //Grind coffee beans for 15 seconds
         //Heat up water to 200 degrees Fahrenheit
