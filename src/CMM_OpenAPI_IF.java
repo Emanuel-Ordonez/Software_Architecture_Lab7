@@ -1,3 +1,5 @@
+import Coffee.CoffeeIF;
+
 public class CMM_OpenAPI_IF {
     public void setCoffeeType(String str){
         System.out.println("Chosen coffee type: "+str);

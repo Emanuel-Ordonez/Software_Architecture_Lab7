@@ -1,4 +1,7 @@
-public class Coffee {
+package Coffee;
+
+public class CoffeeLatte {
+
     public void start()
     {
         //Indicate the machine is running

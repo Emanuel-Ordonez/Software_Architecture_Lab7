@@ -1,3 +1,5 @@
+import Coffee.CoffeeIF;
+
 public class CMM_Environment {
         public void setCoffeeType(String str){
 
