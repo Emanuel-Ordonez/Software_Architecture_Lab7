@@ -13,5 +13,5 @@ public interface CoffeeOS_API {
     public void setTypeLED(int num);
     public void computePrice(CoffeeIF cif);
     public void done();
-    public void run() throws ClassNotFoundException;
+    public void run() throws ClassNotFoundException, IllegalAccessException, InstantiationException;
 }

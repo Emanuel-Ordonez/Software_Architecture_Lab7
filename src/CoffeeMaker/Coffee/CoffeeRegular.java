@@ -1,12 +1,21 @@
 package CoffeeMaker.Coffee;
 
-public class CoffeeRegular {
+import CoffeeMaker.CoffeeOS_API;
+
+public class CoffeeRegular extends AbstractCoffee{
+
+    private CoffeeIF environment;
+
+    @Override
+    public void setEnvironment(CoffeeIF environment) {
+        this.environment = environment;
+    }
 
     public void start()
     {
-//        //Indicate the machine is running display purchased type of coffee to LED
-//        System.out.println("Now brewing \"Regular\"...");
-//        //Grind coffee beans for 8 seconds
+        //Indicate the machine is running display purchased type of coffee to LED
+        System.out.println("Now brewing \"Regular\"...");
+        //Grind coffee beans for 8 seconds
 //        CoffeeMaker.CoffeeOS.setGrindingTime(8);
 //        //Heat up water to 150 degrees Fahrenheit
 //        CoffeeMaker.CoffeeOS.setTemperature(150);

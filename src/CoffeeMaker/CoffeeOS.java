@@ -15,7 +15,7 @@ public class CoffeeOS implements CoffeeOS_API{
     private List<CoffeeIF> ListOfSales = new ArrayList<CoffeeIF>();
 
 
-    public void menu() throws ClassNotFoundException {
+    public void menu() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
         /*LED light has two digits:
             first digit:
                 0 -- running
@@ -40,6 +40,7 @@ public class CoffeeOS implements CoffeeOS_API{
             System.out.println("\t3 - Latte ($3)");
             System.out.println("\t4 - Espresso ($4)");
             System.out.println("\t5 - Cappuccino ($5)");
+            System.out.println("\n");
 
             choice = in.nextInt();
         }while(LED < 1.0 && (choice >= 1 && choice <= 5));
@@ -78,7 +79,7 @@ public class CoffeeOS implements CoffeeOS_API{
 //        }
 //    }//end setCoffeeType(String type)
 
-    public void setCoffeeType (CoffeeIF.CoffeeType type) throws ClassNotFoundException {
+    public void setCoffeeType (CoffeeIF.CoffeeType type) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
 //        String compiledClassLocation = new File(".").getCanonicalPath();
 //        System.out.println(compiledClassLocation);
 //        URL[] classPath = (newFile(compiledClassLocation).toURI().toURL());
@@ -91,20 +92,31 @@ public class CoffeeOS implements CoffeeOS_API{
         switch (type) {
             case Regular:
                 c = cLoader.loadClass("CoffeeMaker.Coffee.CoffeeRegular");
+                System.out.println("loading regular class...");
                 break;
             case Mocha:
                 c = cLoader.loadClass("CoffeeMaker.Coffee.CoffeeMocha");
+                System.out.println("loading mocha class...");
                 break;
             case Latte:
                 c = cLoader.loadClass("CoffeeMaker.Coffee.CoffeeLatte");
+                System.out.println("loading latte class...");
                 break;
             case Espresso:
                 c = cLoader.loadClass("CoffeeMaker.Coffee.CoffeeEspresso");
+                System.out.println("loading espresso class...");
                 break;
             case Cappuccino:
                 c = cLoader.loadClass("CoffeeMaker.Coffee.CoffeeCappuccino");
+                System.out.println("loading cappuccino class...");
                 break;
         }
+
+//        CoffeeIF coffeeOrders;// =  null;
+//        assert c != null;
+//        coffeeOrders = (CoffeeIF) c.newInstance();
+//        coffeeOrders.setEnvironment(this);
+
     }//end setChosenCoffeeType()
 
     ////////////////////////////////////////////////////////////////////////////////
@@ -164,7 +176,7 @@ public class CoffeeOS implements CoffeeOS_API{
 
     public void done(){}
 
-    public void run() throws ClassNotFoundException {
+    public void run() throws ClassNotFoundException, IllegalAccessException, InstantiationException {
         menu();
     }
 

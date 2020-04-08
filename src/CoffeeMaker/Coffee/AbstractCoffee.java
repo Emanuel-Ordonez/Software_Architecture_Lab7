@@ -4,9 +4,6 @@ public abstract class AbstractCoffee implements CoffeeIF{
 
     private CoffeeIF environment;
 
-    public void setEnvironment(CoffeeIF environment){
-        this.environment = environment;
-    }
-
+    public abstract void setEnvironment(CoffeeIF environment);
     public abstract void start();
 }

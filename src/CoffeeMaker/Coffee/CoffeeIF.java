@@ -6,6 +6,6 @@ public interface CoffeeIF {
         Regular, Mocha, Latte, Espresso, Cappuccino;
     }
 
-    public void setEnvironment(CoffeeMaker.CoffeeOS_API environment); //??
+    public void setEnvironment(CoffeeMaker.Coffee.CoffeeIF environment); //??
     public void start();
 }
