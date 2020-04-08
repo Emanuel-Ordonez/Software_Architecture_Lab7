@@ -1,4 +1,4 @@
-package Condiment;
+package CoffeeMaker.Condiment;
 
 public class CondimentVanilla {
     //double price = 0.50;

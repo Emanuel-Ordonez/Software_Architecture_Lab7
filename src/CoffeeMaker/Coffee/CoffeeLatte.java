@@ -1,4 +1,4 @@
-package Coffee;
+package CoffeeMaker.Coffee;
 
 public class CoffeeLatte {
 

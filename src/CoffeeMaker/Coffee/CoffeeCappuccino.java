@@ -1,6 +1,6 @@
-package Coffee;
+package CoffeeMaker.Coffee;
 
-public class CoffeeEspresso {
+public class CoffeeCappuccino {
     public void start()
     {
         //Indicate the machine is running
