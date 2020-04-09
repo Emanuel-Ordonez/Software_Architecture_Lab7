@@ -126,8 +126,9 @@ public class CoffeeOS implements CoffeeOS_API{
 
         char choiceA;
         Scanner in = new Scanner(System.in);
-        int choiceB = 0, servings = 0;
-        double total = 0;
+        int choiceB = 0;
+        double servings = 0.00;
+        double total = 0.00;
 
         do {
             System.out.println("\nWould you like to add condiments? (Y/N): ");
@@ -145,11 +146,11 @@ public class CoffeeOS implements CoffeeOS_API{
             }while(choiceB < 1 || choiceB > 3);
 
             System.out.println("How many servings would you like to add?");
-            servings = in.nextInt();
+            servings = in.nextDouble();
             switch(choiceB){
-                case 1: total = 0.25 * servings;
-                case 2: total = 0.50 * servings;
-                case 3: total = servings;
+                case 1: total += 0.25 * servings; break;
+                case 2: total += 0.50 * servings; break;
+                case 3: total += 1.00 * servings; break;
             }
 
             do{
