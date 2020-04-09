@@ -3,6 +3,7 @@ package CoffeeMaker;
 import CoffeeMaker.Coffee.*;
 import CoffeeMaker.Coffee.CoffeeIF.CoffeeType;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -12,6 +13,7 @@ public class CoffeeOS implements CoffeeOS_API{
     private double LED; //LED light (see menu() notes for more)
     public void setLED(double n){LED = n;}
     public double getLED(){return LED;}
+    private static DecimalFormat df2 = new DecimalFormat("#.##");
     private List<CoffeeIF> ListOfSales = new ArrayList<CoffeeIF>();
 
     private double Regular = 1.00;
@@ -37,7 +39,7 @@ public class CoffeeOS implements CoffeeOS_API{
                 4 - Espresso
                 5 - Cappuccino
          */
-        setLED(1.0); //not running, no coffee selected
+        setPowerLED(0); //not running, no coffee selected
         int choice = 0; //choice to be used in menu
         Scanner in = new Scanner(System.in);
 
@@ -56,45 +58,22 @@ public class CoffeeOS implements CoffeeOS_API{
         }while(LED < 1.0 && (choice < 1 || choice > 5));
 
         CoffeeIF.CoffeeType coffeeType = null;
+
         switch(choice){ //convert choice to coffee type string
-            case 1:coffeeType=CoffeeIF.CoffeeType.Regular;setLED(1.1);break;
-            case 2:coffeeType=CoffeeIF.CoffeeType.Mocha;setLED(1.2);break;
-            case 3:coffeeType=CoffeeIF.CoffeeType.Latte;setLED(1.2);break;
-            case 4:coffeeType=CoffeeIF.CoffeeType.Espresso;setLED(1.4);break;
-            case 5:coffeeType=CoffeeIF.CoffeeType.Cappuccino;setLED(1.5);break;
+            case 1:coffeeType=CoffeeIF.CoffeeType.Regular;break;
+            case 2:coffeeType=CoffeeIF.CoffeeType.Mocha;break;
+            case 3:coffeeType=CoffeeIF.CoffeeType.Latte;break;
+            case 4:coffeeType=CoffeeIF.CoffeeType.Espresso;break;
+            case 5:coffeeType=CoffeeIF.CoffeeType.Cappuccino;break;
             default:System.out.println("ERROR: INVALID CHOICE; SEE menu()");done();
         }
         setCoffeeType(coffeeType);
+        addCondiment(choice);
+        setPowerLED(1);
     }//END menu()
 
-//    public void setCoffeeType(String type) throws ClassNotFoundException {
-//        ClassLoader cLoader = this.getClass().getClassLoader();
-//        Class c = null;
-//        switch (type) {
-//            case "Regular":
-//                c = cLoader.loadClass("CoffeeMaker.srcpkg.Coffee.CoffeeRegular");
-//                break;
-//            case "Mocha":
-//                c = cLoader.loadClass("CoffeeMaker.srcpkg.Coffee.CoffeeMocha");
-//                break;
-//            case "Latte":
-//                c = cLoader.loadClass("CoffeeMaker.srcpkg.Coffee.CoffeeLatte");
-//                break;
-//            case "Espresso":
-//                c = cLoader.loadClass("CoffeeMaker.srcpkg.Coffee.CoffeeEspresso");
-//                break;
-//            case "Cappuccino":
-//                c = cLoader.loadClass("CoffeeMaker.srcpkg.Coffee.CoffeeCappuccino");
-//                break;
-//        }
-//    }//end setCoffeeType(String type)
-
     public void setCoffeeType (CoffeeIF.CoffeeType type) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
-//        String compiledClassLocation = new File(".").getCanonicalPath();
-//        System.out.println(compiledClassLocation);
-//        URL[] classPath = (newFile(compiledClassLocation).toURI().toURL());
-//        ClassLoader cLoader = new URLClassLoader(classPath);
-        //^^^ another way to use class holder
+
         ClassLoader cLoader = this.getClass().getClassLoader();
 
         Class c = null;
@@ -103,33 +82,33 @@ public class CoffeeOS implements CoffeeOS_API{
                 c = cLoader.loadClass("CoffeeMaker.Coffee.CoffeeRegular");
                 CoffeeMaker.Coffee.CoffeeRegular d = (CoffeeRegular) c.newInstance();
                 d.start(this);
+                setTypeLED(1);
                 break;
             case Mocha:
                 c = cLoader.loadClass("CoffeeMaker.Coffee.CoffeeMocha");
                 CoffeeMaker.Coffee.CoffeeMocha e = (CoffeeMocha) c.newInstance();
                 e.start(this);
+                setTypeLED(2);
                 break;
             case Latte:
                 c = cLoader.loadClass("CoffeeMaker.Coffee.CoffeeLatte");
                 CoffeeMaker.Coffee.CoffeeLatte y = (CoffeeLatte) c.newInstance();
                 y.start(this);
+                setTypeLED(3);
                 break;
             case Espresso:
                 c = cLoader.loadClass("CoffeeMaker.Coffee.CoffeeEspresso");
                 CoffeeMaker.Coffee.CoffeeEspresso z = (CoffeeEspresso) c.newInstance();
                 z.start(this);
+                setTypeLED(4);
                 break;
             case Cappuccino:
                 c = cLoader.loadClass("CoffeeMaker.Coffee.CoffeeCappuccino");
                 CoffeeMaker.Coffee.CoffeeCappuccino h = (CoffeeCappuccino) c.newInstance();
                 h.start(this);
+                setTypeLED(5);
                 break;
         }
-    addCondiment();
-//        CoffeeIF coffeeOrders;// =  null;
-//        assert c != null;
-//        coffeeOrders = (CoffeeIF) c.newInstance();
-//        coffeeOrders.setEnvironment(this);
 
     }//end setChosenCoffeeType()
 
@@ -143,7 +122,7 @@ public class CoffeeOS implements CoffeeOS_API{
         System.out.println("Setting grinding time to " + secs + " seconds");
     }
 
-    public void addCondiment(){
+    public void addCondiment(int type){
 
         char choiceA;
         Scanner in = new Scanner(System.in);
@@ -153,7 +132,7 @@ public class CoffeeOS implements CoffeeOS_API{
         do {
             System.out.println("\nWould you like to add condiments? (Y/N): ");
             choiceA = in.next().charAt(0);
-        }while(choiceA != 'Y' && choiceA != 'N');
+        }while(choiceA != 'Y' && choiceA != 'N' && choiceA != 'y' && choiceA != 'n');
 
         while(choiceA == 'Y'){
             do {
@@ -176,9 +155,9 @@ public class CoffeeOS implements CoffeeOS_API{
             do{
                 System.out.println("Would you like to add more condiments? (Y/N)");
                 choiceA = in.next().charAt(0);
-            }while(choiceA != 'Y' && choiceA != 'N');
+            }while(choiceA != 'Y' && choiceA != 'N' && choiceA != 'y' && choiceA != 'n');
 
-            //store total??????
+            computePrice(total+type);
         }
 
     }
@@ -193,35 +172,20 @@ public class CoffeeOS implements CoffeeOS_API{
 
     public void wait(int seconds){
         System.out.println("Waiting for "+ seconds +" seconds");
-    }//end wati()
+    }//end wait()
 
     public void setPowerLED(int num){
         System.out.println("Setting Power LED to " + num);
+        LED = ((int)(LED * 10)%10) + num;
     }//end setPowerLED
 
     public void setTypeLED(int num){
         System.out.println("Setting LED type to " + num);
+        LED = ((int)LED % 10) + (num * 0.10);
     }//end setTypeLED
 
-    public void computePrice(CoffeeIF cif){
-        double price = 0.00;
-//        switch (cif.CoffeeType) {
-//            case Regular:
-//                price = 1.00;
-//                break;
-//            case Mocha:
-//                price = 2.00;
-//                break;
-//            case Latte:
-//                price = 3.00;
-//                break;
-//            case Espresso:
-//                price = 4.00;
-//                break;
-//            case Cappuccino:
-//                price = 5.00;
-//                break;
-//        }
+    public void computePrice(double price){
+        System.out.println("Final Price: $" + df2.format(price));
     }//end computePrice()
 
     public void done(){}

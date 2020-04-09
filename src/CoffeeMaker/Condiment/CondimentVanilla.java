@@ -10,14 +10,8 @@ public class CondimentVanilla {
         this.environment = (CondimentIF) this;
     }
 
-    public void add(CoffeeOS x) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
+    public void add(CoffeeOS x){
 
-        ClassLoader cLoader = this.getClass().getClassLoader();
-
-        Class c = null;
-        c = cLoader.loadClass("CoffeeMaker.Condiment.Vanilla");
-        CoffeeMaker.Condiment.CondimentCream d = (CondimentCream) c.newInstance();
-        d.add(this);
     }
 
 }
