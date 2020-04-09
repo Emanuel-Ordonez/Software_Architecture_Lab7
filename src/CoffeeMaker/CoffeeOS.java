@@ -53,7 +53,7 @@ public class CoffeeOS implements CoffeeOS_API{
             System.out.println("\nEnter your choice: ");
 
             choice = in.nextInt();
-        }while(LED < 1.0 && (choice >= 1 && choice <= 5));
+        }while(LED < 1.0 && (choice < 1 || choice > 5));
 
         CoffeeIF.CoffeeType coffeeType = null;
         switch(choice){ //convert choice to coffee type string
@@ -95,7 +95,6 @@ public class CoffeeOS implements CoffeeOS_API{
 //        URL[] classPath = (newFile(compiledClassLocation).toURI().toURL());
 //        ClassLoader cLoader = new URLClassLoader(classPath);
         //^^^ another way to use class holder
-
         ClassLoader cLoader = this.getClass().getClassLoader();
 
         Class c = null;
@@ -145,7 +144,42 @@ public class CoffeeOS implements CoffeeOS_API{
     }
 
     public void addCondiment(int type){
-        System.out.println("Adding condiments");
+
+        char choiceA;
+        Scanner in = new Scanner(System.in);
+        int choiceB = 0, servings = 0;
+        double total = 0;
+
+        do {
+            System.out.println("\nWould you like to add condiments? (Y/N): ");
+            choiceA = in.next().charAt(0);
+        }while(choiceA == 'Y' || choiceA == 'N');
+
+        while(choiceA == 'Y'){
+            do {
+                System.out.println("What condiments would you like to add?");
+                System.out.println("\t1 - Cream ($0.25)");
+                System.out.println("\t2 - Vanilla ($0.50)");
+                System.out.println("\t3 - Chocolate ($1.00)");
+                System.out.println("\nEnter your choice: ");
+            }while(choiceB < 1 || choiceB > 3);
+
+            System.out.println("How many servings would you like to add?");
+            servings = in.nextInt();
+            switch(choiceB){
+                case 1: total = 0.25 * servings;
+                case 2: total = 0.50 * servings;
+                case 3: total = servings;
+            }
+
+            do{
+                System.out.println("Would you like to add more condiments? (Y/N)");
+                choiceA = in.next().charAt(0);
+            }while(choiceA == 'Y' || choiceA == 'N');
+
+            //store total??????
+        }
+
     }
 
     public void setTemperature(int degree){
