@@ -125,7 +125,7 @@ public class CoffeeOS implements CoffeeOS_API{
                 h.start(this);
                 break;
         }
-
+    addCondiment(2);
 //        CoffeeIF coffeeOrders;// =  null;
 //        assert c != null;
 //        coffeeOrders = (CoffeeIF) c.newInstance();
@@ -153,7 +153,7 @@ public class CoffeeOS implements CoffeeOS_API{
         do {
             System.out.println("\nWould you like to add condiments? (Y/N): ");
             choiceA = in.next().charAt(0);
-        }while(choiceA == 'Y' || choiceA == 'N');
+        }while(choiceA != 'Y' && choiceA != 'N');
 
         while(choiceA == 'Y'){
             do {
@@ -162,6 +162,7 @@ public class CoffeeOS implements CoffeeOS_API{
                 System.out.println("\t2 - Vanilla ($0.50)");
                 System.out.println("\t3 - Chocolate ($1.00)");
                 System.out.println("\nEnter your choice: ");
+                choiceB = in.nextInt();
             }while(choiceB < 1 || choiceB > 3);
 
             System.out.println("How many servings would you like to add?");
@@ -175,7 +176,7 @@ public class CoffeeOS implements CoffeeOS_API{
             do{
                 System.out.println("Would you like to add more condiments? (Y/N)");
                 choiceA = in.next().charAt(0);
-            }while(choiceA == 'Y' || choiceA == 'N');
+            }while(choiceA != 'Y' && choiceA != 'N');
 
             //store total??????
         }
