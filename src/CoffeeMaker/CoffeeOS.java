@@ -1,6 +1,6 @@
 package CoffeeMaker;
 
-import CoffeeMaker.Coffee.CoffeeIF;
+import CoffeeMaker.Coffee.*;
 import CoffeeMaker.Coffee.CoffeeIF.CoffeeType;
 
 import java.util.ArrayList;
@@ -40,7 +40,7 @@ public class CoffeeOS implements CoffeeOS_API{
             System.out.println("\t3 - Latte ($3)");
             System.out.println("\t4 - Espresso ($4)");
             System.out.println("\t5 - Cappuccino ($5)");
-            System.out.println("\n");
+            System.out.println("\nEnter your choice: ");
 
             choice = in.nextInt();
         }while(LED < 1.0 && (choice >= 1 && choice <= 5));
@@ -92,33 +92,28 @@ public class CoffeeOS implements CoffeeOS_API{
         switch (type) {
             case Regular:
                 c = cLoader.loadClass("CoffeeMaker.Coffee.CoffeeRegular");
-                CoffeeMaker.Coffee.CoffeeRegular l = new CoffeeMaker.Coffee.CoffeeRegular();
-                l.start(this);
-                System.out.println("loading regular class...");
+                CoffeeMaker.Coffee.CoffeeRegular d = (CoffeeRegular) c.newInstance();
+                d.start(this);
                 break;
             case Mocha:
                 c = cLoader.loadClass("CoffeeMaker.Coffee.CoffeeMocha");
-                CoffeeMaker.Coffee.CoffeeMocha v = new CoffeeMaker.Coffee.CoffeeMocha();
-                v.start(this);
-                System.out.println("loading mocha class...");
+                CoffeeMaker.Coffee.CoffeeMocha e = (CoffeeMocha) c.newInstance();
+                e.start(this);
                 break;
             case Latte:
                 c = cLoader.loadClass("CoffeeMaker.Coffee.CoffeeLatte");
-                CoffeeMaker.Coffee.CoffeeLatte y = new CoffeeMaker.Coffee.CoffeeLatte();
+                CoffeeMaker.Coffee.CoffeeLatte y = (CoffeeLatte) c.newInstance();
                 y.start(this);
-                System.out.println("loading latte class...");
                 break;
             case Espresso:
                 c = cLoader.loadClass("CoffeeMaker.Coffee.CoffeeEspresso");
-                CoffeeMaker.Coffee.CoffeeEspresso z = new CoffeeMaker.Coffee.CoffeeEspresso();
+                CoffeeMaker.Coffee.CoffeeEspresso z = (CoffeeEspresso) c.newInstance();
                 z.start(this);
-                System.out.println("loading espresso class...");
                 break;
             case Cappuccino:
                 c = cLoader.loadClass("CoffeeMaker.Coffee.CoffeeCappuccino");
-                CoffeeMaker.Coffee.CoffeeCappuccino h = new CoffeeMaker.Coffee.CoffeeCappuccino();
+                CoffeeMaker.Coffee.CoffeeCappuccino h = (CoffeeCappuccino) c.newInstance();
                 h.start(this);
-                System.out.println("loading cappuccino class...");
                 break;
         }
 
