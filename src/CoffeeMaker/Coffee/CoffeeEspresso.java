@@ -9,18 +9,18 @@ public class CoffeeEspresso extends AbstractCoffee{
         this.environment = environment;
     }
 
-    public void start()
+    public void start(CoffeeMaker.CoffeeOS x)
     {
         //Indicate the machine is running display purchased type of coffee to LED
-        System.out.println("Now brewing \"Regular\"...");
+        System.out.println("Now brewing \"Espresso\"...");
 //        //Grind coffee beans for 8 seconds
-//        CoffeeMaker.CoffeeOS.setGrindingTime(8);
+        x.setGrindingTime(8);
 //        //Heat up water to 150 degrees Fahrenheit
-//        CoffeeMaker.CoffeeOS.setTemperature(150);
+        x.setTemperature(150);
 //        //Hold the temperature for 2 seconds
-//        CoffeeMaker.CoffeeOS.holdTemperature(2);
+        x.holdTemperature(2);
 //        //After 15 seconds, set the LED to indicate the machine is not running
-//        CoffeeMaker.CoffeeOS.wait(15);
-//        CoffeeMaker.CoffeeOS.setPowerLED(1); //power off
+        x.wait(15);
+        x.setPowerLED(1); //power off
     }
 }
