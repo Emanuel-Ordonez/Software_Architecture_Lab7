@@ -1,7 +1,7 @@
 package CoffeeMaker;
 
 import CoffeeMaker.Coffee.*;
-import CoffeeMaker.Coffee.CoffeeIF.CoffeeType;
+import CoffeeMaker.Condiment.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,6 +65,43 @@ public class CoffeeOS implements CoffeeOS_API{
             default:System.out.println("ERROR: INVALID CHOICE; SEE menu()");done();
         }
         setCoffeeType(coffeeType);
+        /*
+        //choose condiments below
+        char choiceA;
+        int choiceB = 0, servings = 0;
+        double total = 0;
+
+        do {
+            System.out.println("\nWould you like to add condiments? (Y/N): ");
+            choiceA = in.next().charAt(0);
+        }while(choiceA != 'Y' && choiceA != 'N' && choiceA != 'y' && choiceA != 'n');
+
+        while(choiceA == 'Y'){
+            do {
+                System.out.println("What condiments would you like to add?");
+                System.out.println("\t1 - Cream ($0.25)");
+                System.out.println("\t2 - Vanilla ($0.50)");
+                System.out.println("\t3 - Chocolate ($1.00)");
+                System.out.println("\nEnter your choice: ");
+                choiceB = in.nextInt();
+            }while(choiceB < 1 || choiceB > 3);
+
+            System.out.println("How many servings would you like to add?");
+            servings = in.nextInt();
+            switch(choiceB){
+                case 1: total = 0.25 * servings;
+                case 2: total = 0.50 * servings;
+                case 3: total = servings;
+            }
+
+            do{
+                System.out.println("Would you like to add more condiments? (Y/N)");
+                choiceA = in.next().charAt(0);
+            }while(choiceA != 'Y' && choiceA != 'N' && choiceA != 'y' && choiceA != 'n');
+
+
+*/
+            System.out.println("Final price: $"+ (total + type));
     }//END menu()
 
 //    public void setCoffeeType(String type) throws ClassNotFoundException {
@@ -98,34 +135,39 @@ public class CoffeeOS implements CoffeeOS_API{
         ClassLoader cLoader = this.getClass().getClassLoader();
 
         Class c = null;
+        int coffeeType = 0;
         switch (type) {
             case Regular:
                 c = cLoader.loadClass("CoffeeMaker.Coffee.CoffeeRegular");
                 CoffeeMaker.Coffee.CoffeeRegular d = (CoffeeRegular) c.newInstance();
                 d.start(this);
+                coffeeType = 1;
                 break;
             case Mocha:
                 c = cLoader.loadClass("CoffeeMaker.Coffee.CoffeeMocha");
                 CoffeeMaker.Coffee.CoffeeMocha e = (CoffeeMocha) c.newInstance();
                 e.start(this);
+                coffeeType = 2;
                 break;
             case Latte:
                 c = cLoader.loadClass("CoffeeMaker.Coffee.CoffeeLatte");
                 CoffeeMaker.Coffee.CoffeeLatte y = (CoffeeLatte) c.newInstance();
                 y.start(this);
+                coffeeType = 3;
                 break;
             case Espresso:
                 c = cLoader.loadClass("CoffeeMaker.Coffee.CoffeeEspresso");
                 CoffeeMaker.Coffee.CoffeeEspresso z = (CoffeeEspresso) c.newInstance();
                 z.start(this);
+                coffeeType = 4;
                 break;
             case Cappuccino:
                 c = cLoader.loadClass("CoffeeMaker.Coffee.CoffeeCappuccino");
                 CoffeeMaker.Coffee.CoffeeCappuccino h = (CoffeeCappuccino) c.newInstance();
                 h.start(this);
+                coffeeType = 5;
                 break;
         }
-    addCondiment(2);
 //        CoffeeIF coffeeOrders;// =  null;
 //        assert c != null;
 //        coffeeOrders = (CoffeeIF) c.newInstance();
@@ -135,51 +177,40 @@ public class CoffeeOS implements CoffeeOS_API{
 
     ////////////////////////////////////////////////////////////////////////////////
 
-    public void setCoffeeType(String str) {
-        System.out.println("Chosen coffee type: " + str);
-    }
+//    public void setCoffeeType(String str) {
+//        System.out.println("Chosen coffee type: " + str);
+//    }
 
     public void setGrindingTime(int secs) {
         System.out.println("Setting grinding time to " + secs + " seconds");
     }
 
-    public void addCondiment(int type){
+    public void addCondiment(CoffeeMaker.Condiment.CondimentIF.CondimentType type) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
 
-        char choiceA;
-        Scanner in = new Scanner(System.in);
-        int choiceB = 0, servings = 0;
-        double total = 0;
+        ClassLoader cLoader = this.getClass().getClassLoader();
 
-        do {
-            System.out.println("\nWould you like to add condiments? (Y/N): ");
-            choiceA = in.next().charAt(0);
-        }while(choiceA != 'Y' && choiceA != 'N');
-
-        while(choiceA == 'Y'){
-            do {
-                System.out.println("What condiments would you like to add?");
-                System.out.println("\t1 - Cream ($0.25)");
-                System.out.println("\t2 - Vanilla ($0.50)");
-                System.out.println("\t3 - Chocolate ($1.00)");
-                System.out.println("\nEnter your choice: ");
-                choiceB = in.nextInt();
-            }while(choiceB < 1 || choiceB > 3);
-
-            System.out.println("How many servings would you like to add?");
-            servings = in.nextInt();
-            switch(choiceB){
-                case 1: total = 0.25 * servings;
-                case 2: total = 0.50 * servings;
-                case 3: total = servings;
-            }
-
-            do{
-                System.out.println("Would you like to add more condiments? (Y/N)");
-                choiceA = in.next().charAt(0);
-            }while(choiceA != 'Y' && choiceA != 'N');
-
-            //store total??????
-        }
+        Class c = null;
+        int coffeeType = 0;
+        switch (type) {
+            case Cream:
+                c = cLoader.loadClass("CoffeeMaker.Condiment.Cream");
+                CoffeeMaker.Condiment.CondimentCream d = (CondimentCream) c.newInstance();
+                d.add(this);
+                coffeeType = 1;
+                break;
+            case Vanilla:
+                c = cLoader.loadClass("CoffeeMaker.Condiment.Vanilla");
+                CoffeeMaker.Condiment.CondimentVanilla e = (CondimentVanilla) c.newInstance();
+                e.add(this);
+                coffeeType = 2;
+                break;
+            case Chocolate:
+                c = cLoader.loadClass("CoffeeMaker.Condiment.Chocolate");
+                CoffeeMaker.Condiment.CondimentChocolate y = (CondimentChocolate) c.newInstance();
+                y.add(this);
+                coffeeType = 3;
+                break;
+            default: System.out.println("ERROR IN: addCondiment()");
 
     }
 
