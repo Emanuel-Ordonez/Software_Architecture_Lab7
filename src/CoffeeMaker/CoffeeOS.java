@@ -10,9 +10,19 @@ import java.util.Scanner;
 public class CoffeeOS implements CoffeeOS_API{
 
     private double LED; //LED light (see menu() notes for more)
-        public void setLED(double n){LED = n;}
-        public double getLED(){return LED;}
+    public void setLED(double n){LED = n;}
+    public double getLED(){return LED;}
     private List<CoffeeIF> ListOfSales = new ArrayList<CoffeeIF>();
+
+    private double Regular = 1.00;
+    private double Mocha = 2.00;
+    private double Latte = 3.00;
+    private double Espresso = 4.00;
+    private double Cappuccino = 5.00;
+
+    private double Chocolate = 1.00;
+    private double Vanilla = 0.50;
+    private double Cream = 0.25;
 
 
     public void menu() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
