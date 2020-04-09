@@ -125,7 +125,7 @@ public class CoffeeOS implements CoffeeOS_API{
                 h.start(this);
                 break;
         }
-    addCondiment(2);
+    addCondiment();
 //        CoffeeIF coffeeOrders;// =  null;
 //        assert c != null;
 //        coffeeOrders = (CoffeeIF) c.newInstance();
@@ -143,7 +143,7 @@ public class CoffeeOS implements CoffeeOS_API{
         System.out.println("Setting grinding time to " + secs + " seconds");
     }
 
-    public void addCondiment(int type){
+    public void addCondiment(){
 
         char choiceA;
         Scanner in = new Scanner(System.in);
